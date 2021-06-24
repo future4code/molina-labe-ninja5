@@ -12,6 +12,24 @@ function Navbar() {
     const handleClick = () => setClick(!click)
     const closeMobileMenu = () => setClick(false)
 
+    const onMouseEnter = () =>{
+        if(window.in <960){
+            setDropdown(false)
+
+        }else{
+            setDropdown(true)
+        }
+    };
+
+    const onMouseLeave = () =>{
+        if(window.in <960){
+            setDropdown(false)
+
+        }else{
+            setDropdown(false)
+        }
+    };
+
     return (
         <div>
             <nav className="navbar">
@@ -27,7 +45,10 @@ function Navbar() {
                             Home
                         </Link>
                     </li>
-                    <li className='nav-item'>
+                    <li className='nav-item'
+                        onMouseEnter={onMouseEnter}
+                        onMouseLeave={onMouseLeave}
+                        >
                         <Link to='/serviços' className='nav-links' onClick={closeMobileMenu}>
                             Serviços <i className='fas fa-caret-down' />
                         </Link>
