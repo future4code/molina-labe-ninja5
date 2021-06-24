@@ -1,10 +1,13 @@
-import React from 'react'
-import { AppContainer } from './components/AppContainer'
+import React from "react";
+import CreateJob from "./components/NewJobs/CreateJob";
 
-function App() {
-	return (
-        <AppContainer />
-	)
+export default class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <CreateJob />
+      </div>
+    );
+  }
 }
 
-export default App
