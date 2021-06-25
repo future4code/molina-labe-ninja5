@@ -148,22 +148,6 @@ export default class createJob extends React.Component {
         console.log(err.response.data.message);
       });
   };
-
-  delJobs = (id) => {
-    axios
-      .delete(`https://labeninjas.herokuapp.com/jobs/${id}`, headers)
-
-      .then((res) => {
-        alert("Serviço deletado!");
-        console.log(res);
-        this.setState({
-          job: res.data.jobs
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   render() {
     return (
       <div>
@@ -213,11 +197,11 @@ export default class createJob extends React.Component {
             <H2>Serviços Cadastrados</H2>
             {this.state.job.map((jobs) => {
               return (
-                <CardMap>
+                <CardMap key={jobs.id}>
                 <p>
                   {""}
                   {jobs.title}
-                  <Button onClick={() => this.delJobs(jobs.id)}>X</Button>
+                 
                 </p>
                 </CardMap>
               );
