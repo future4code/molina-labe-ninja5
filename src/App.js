@@ -1,17 +1,14 @@
 import React from 'react'
-import { AppContainer } from './components/AppContainer'
-import Header from './components/Header'
+import Navbar from './components/header/Navbar'
+import {BrowserRouter as Router} from 'react-router-dom'
 
 
-export default class App extends React.Component {
-
-	render() {
-		return (
-			<div>
-				<Header />
-				<AppContainer />
-			</div>				
-		)
-	}
+function App () {
+	return(
+		<Router>
+			<Navbar />
+		</Router>
+	)
 }
 
+export default App;
