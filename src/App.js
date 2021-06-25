@@ -1,14 +1,17 @@
-import React from 'react'
+import React from "react";
+import CreateJob from "./components/NewJobs/CreateJob";
 import Navbar from './components/header/Navbar'
 import {BrowserRouter as Router} from 'react-router-dom'
 
-
-function App () {
-	return(
-		<Router>
-			<Navbar />
-		</Router>
-	)
+export default class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <CreateJob />
+        <Router>
+			  <Navbar />
+		    </Router>
+      </div>
+    );
+  }
 }
-
-export default App;
