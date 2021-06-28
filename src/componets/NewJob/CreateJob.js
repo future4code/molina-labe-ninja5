@@ -1,67 +1,72 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
+import HomeIcon from "@material-ui/icons/Home";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import WorkIcon from "@material-ui/icons/Work";
+import { MyButton } from "../styled";
 
 const CardJob = styled.div`
   border: 1px solid black;
-  background-color:black;
-  color:yellow;
+  color: yellow;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
   width: 600px;
   display: grid;
-  
-  //justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 `;
 const CardList = styled.div`
   border: 1px solid black;
-  background-color:black;
-  color:black;
+  color: black;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
   width: 600px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   justify-content: space-between;
- // background-color:black;
 `;
-const Button = styled.button`
-   background-color:black;
-   border: 1px solid black;
-  border-radius: 10px;
-  padding: 1px;
-  margin:1px;
-  //display: grid;
-  flex-direction: column;
-  justify-content: space-between;
-  
-`
+
 const CardMap = styled.div`
-   background-color:#ffea00;
-   border: 5px solid black;
+  background-color: #ffea00;
+  border: 5px solid black;
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
   width: 200px;
   display: flex;
   flex-direction: column;
- justify-content: space-between;
-  
-`
-const H2= styled.div`
+  justify-content: space-between;
+`;
+const H2 = styled.div`
   color: yellow;
-  
-`
-const CardInput = styled.div`
-  background-color:black;
+`;
+const Button = styled.button`
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1px;
+  margin: 1px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
-  
-`
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const CardInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const url = "https://labeninjas.herokuapp.com/jobs";
 const headers = {
   headers: {
@@ -69,7 +74,7 @@ const headers = {
   }
 };
 
-export default class createJob extends React.Component {
+export default class CreateJob extends React.Component {
   state = {
     job: [],
     title: "",
@@ -151,46 +156,58 @@ export default class createJob extends React.Component {
   render() {
     return (
       <div>
+        <MyButton onClick={this.props.toHome}>
+          <HomeIcon className="icon" />
+          Home
+        </MyButton>
+        <MyButton onClick={this.props.toContract}>
+          <WorkIcon className="icon" />
+          Contratar Serviço
+        </MyButton>
+        <MyButton onClick={this.props.toShoppingCart}>
+          <ShoppingCartIcon className="icon" />
+          Shopping Cart
+        </MyButton>
         <CardJob>
           <h1>Criar Serviço</h1>
           <CardInput>
-          <input
-            placeholder={"Título"}
-            value={this.state.title}
-            onChange={this.onChangeTitle}
-          />
-          <input
-            placeholder={"Descrição"}
-            value={this.state.description}
-            onChange={this.onChangeDescription}
-          />
+            <input
+              placeholder={"Título"}
+              value={this.state.title}
+              onChange={this.onChangeTitle}
+            />
+            <input
+              placeholder={"Descrição"}
+              value={this.state.description}
+              onChange={this.onChangeDescription}
+            />
 
-          <input
-            type="Number"
-            placeholder={"Preço"}
-            value={this.state.price}
-            onChange={this.onChangePrice}
-          />
-          <label>Tipo de pagamento:</label>
-          <select
-            placeholder={"Tipo de pagamento"}
-            value={this.state.paymentMethods}
-            onChange={this.onChangePayMethod}
-          >
-            <option value="cartao-credito">Cartão de crédito</option>
-            <option value="cartao-debito">Cartão de débito</option>
-            <option value="boleto-bancario">Boleto bancário</option>
-            <option value="paypal">Paypal</option>
-            <option value="pix">Pix</option>
-          </select>
-          <input
-            type="date"
-            placeholder="Prazo (AAAA-MM-DD)"
-            value={this.state.dueDate}
-            onChange={this.onChangeDueDate}
-          />
+            <input
+              type="Number"
+              placeholder={"Preço"}
+              value={this.state.price}
+              onChange={this.onChangePrice}
+            />
+            <label>Tipo de pagamento:</label>
+            <select
+              placeholder={"Tipo de pagamento"}
+              value={this.state.paymentMethods}
+              onChange={this.onChangePayMethod}
+            >
+              <option value="cartao-credito">Cartão de crédito</option>
+              <option value="cartao-debito">Cartão de débito</option>
+              <option value="boleto-bancario">Boleto bancário</option>
+              <option value="paypal">Paypal</option>
+              <option value="pix">Pix</option>
+            </select>
+            <input
+              type="date"
+              placeholder="Prazo (AAAA-MM-DD)"
+              value={this.state.dueDate}
+              onChange={this.onChangeDueDate}
+            />
           </CardInput>
-          <button onClick={this.createJob}>Criar job</button>
+          <Button onClick={this.createJob}>Criar job</Button>
         </CardJob>
         <CardList>
           <div>
@@ -198,11 +215,10 @@ export default class createJob extends React.Component {
             {this.state.job.map((jobs) => {
               return (
                 <CardMap key={jobs.id}>
-                <p>
-                  {""}
-                  {jobs.title}
-                 
-                </p>
+                  <p>
+                    {""}
+                    {jobs.title}
+                  </p>
                 </CardMap>
               );
             })}
